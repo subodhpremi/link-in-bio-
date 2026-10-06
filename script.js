@@ -1,0 +1,103 @@
+/* =====================================================
+   ✏️ EDIT HERE — sirf is block mein apni info badlo
+   ===================================================== */
+const CONFIG = {
+  name: "Subodh Premi",
+  tagline: "Learning. Building. Growing.",
+  intro: "Digital creator, learner and builder exploring technology, creative ideas and useful digital projects.",
+  about: "I'm a digital creator and lifelong learner, passionate about building useful projects, exploring new technologies, and growing with every step.",
+
+  instagram: "https://www.instagram.com/subodhpremi_sp?stkn=bHdocXh4aHp0dDMw",
+  facebook: "https://www.facebook.com/share/1E2V6RShK2/",
+  email: "subodhpremicontact@gmail.com",
+
+  project: {
+    title: "Team Showcase Website",
+    text: "A modern website designed to showcase team members and their information in a clean and professional way.",
+    url: "https://subodhpremi.github.io/team-sp/",
+    github: "",        // Repo link mile to yahan daalo, button apne aap dikhega. Khaali = hidden.
+    tech: []           // Jab sure ho, aise likho: ["HTML", "CSS", "JavaScript"]
+  },
+
+  // Cards. url khaali ("") = "Coming Soon" (click nahi hoga)
+  cards: [
+    { icon: "instagram", title: "Instagram", text: "Connect with me on Instagram", url: "instagram" },
+    { icon: "facebook",  title: "Facebook",  text: "Follow me on Facebook",        url: "facebook" },
+    { icon: "mail",      title: "Email",     text: "Business inquiries & collaborations", url: "email" },
+    { icon: "code",      title: "Projects",  text: "Explore what I've built",      url: "#projects" },
+    { icon: "briefcase", title: "Portfolio",    text: "My work & achievements", url: "" },
+    { icon: "file",      title: "Resume",       text: "View my resume",         url: "" },
+    { icon: "pen",       title: "Blog",         text: "Read my thoughts",       url: "" },
+    { icon: "award",     title: "Certificates", text: "My certifications",      url: "" }
+  ],
+  soon: [
+    { icon: "briefcase", title: "Portfolio" }, { icon: "file", title: "Resume" },
+    { icon: "pen", title: "Blog" }, { icon: "award", title: "Certificates" },
+    { icon: "plus", title: "More Projects" }
+  ]
+};
+/* =================== EDIT HERE khatam =================== */
+
+const $ = (s) => document.querySelector(s);
+const icon = (n) => `<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-${n}"/></svg>`;
+const mailto = "mailto:" + CONFIG.email;
+const resolve = (u) => ({ instagram: CONFIG.instagram, facebook: CONFIG.facebook, email: mailto }[u] || u);
+const external = (u) => u.startsWith("http");
+
+// Text bindings
+const P = CONFIG.project;
+const text = { name: CONFIG.name, tagline: CONFIG.tagline, intro: CONFIG.intro, about: CONFIG.about, projectTitle: P.title, projectText: P.text };
+document.querySelectorAll("[data-bind]").forEach((el) => (el.textContent = text[el.dataset.bind]));
+
+// Social icon buttons
+const socials = [["instagram", "Instagram", CONFIG.instagram], ["facebook", "Facebook", CONFIG.facebook], ["mail", "Email", mailto]];
+const socialHTML = socials.map(([i, l, u]) =>
+  `<a class="social" href="${u}" aria-label="${l}"${external(u) ? ' target="_blank" rel="noopener"' : ""}>${icon(i)}</a>`).join("");
+$("#heroSocials").innerHTML = socialHTML;
+$("#footSocials").innerHTML = socialHTML;
+
+// Link cards
+$("#linkGrid").innerHTML = CONFIG.cards.map((c) => {
+  const url = resolve(c.url);
+  const inner = `<span class="c-icon">${icon(c.icon)}</span><strong>${c.title}</strong>` +
+    (url ? `<span class="c-text">${c.text}</span><span class="c-arrow">${icon("arrow")}</span>`
+         : `<span class="badge">Coming soon</span><span class="c-text">${c.text}</span>`);
+  return url
+    ? `<a class="card glass" href="${url}"${external(url) ? ' target="_blank" rel="noopener"' : ""}>${inner}</a>`
+    : `<div class="card glass off" aria-disabled="true">${inner}</div>`;
+}).join("");
+
+// Coming soon strip
+$("#soonGrid").innerHTML = CONFIG.soon.map((s) =>
+  `<div class="s-item glass">${icon(s.icon)}<span>${s.title}</span><small>Coming soon</small></div>`).join("");
+
+// Project
+$("#projLink").href = P.url;
+if (P.github) { $("#projGit").href = P.github; $("#projGit").hidden = false; }
+$("#badges").innerHTML = P.tech.map((t) => `<span>${t}</span>`).join("");
+
+// Contact + footer
+$("#emailBtn").href = mailto;
+$("#emailText").href = mailto;
+$("#emailText").textContent = CONFIG.email;
+$("#year").textContent = new Date().getFullYear();
+
+// Mobile menu
+const burger = $("#burger"), menu = $("#menu");
+const setMenu = (open) => { menu.classList.toggle("open", open); burger.setAttribute("aria-expanded", open); };
+burger.addEventListener("click", () => setMenu(!menu.classList.contains("open")));
+menu.addEventListener("click", (e) => { if (e.target.tagName === "A") setMenu(false); });
+
+// Scroll reveal
+const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { threshold: 0.12 });
+document.querySelectorAll(".reveal").forEach((el) => (still ? el.classList.add("in") : io.observe(el)));
+
+// Light mouse parallax (desktop only)
+if (!still && matchMedia("(hover:hover) and (min-width:900px)").matches) {
+  const layers = document.querySelectorAll("[data-depth]");
+  addEventListener("mousemove", (e) => {
+    const x = e.clientX / innerWidth - 0.5, y = e.clientY / innerHeight - 0.5;
+    layers.forEach((l) => (l.style.translate = `${-x * l.dataset.depth}px ${-y * l.dataset.depth}px`));
+  });
+}
