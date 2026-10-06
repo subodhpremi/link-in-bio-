@@ -10,6 +10,7 @@ const CONFIG = {
   instagram: "https://www.instagram.com/subodhpremi_sp?stkn=bHdocXh4aHp0dDMw",
   facebook: "https://www.facebook.com/share/1E2V6RShK2/",
   email: "subodhpremicontact@gmail.com",
+  siteUrl: "https://subodhpremi.github.io/link-in-bio/",   // Copy link button yahi link copy karta hai
 
   project: {
     title: "Team Showcase Website",
@@ -81,6 +82,40 @@ $("#emailBtn").href = mailto;
 $("#emailText").href = mailto;
 $("#emailText").textContent = CONFIG.email;
 $("#year").textContent = new Date().getFullYear();
+
+// Copy link button
+const copyBtn = $("#copyBtn");
+copyBtn.addEventListener("click", async () => {
+  let ok = false;
+  try { await navigator.clipboard.writeText(CONFIG.siteUrl); ok = true; }
+  catch (e) { // purane browser ke liye backup
+    const t = document.createElement("textarea");
+    t.value = CONFIG.siteUrl; t.style.position = "fixed"; t.style.opacity = "0";
+    document.body.appendChild(t); t.select();
+    try { ok = document.execCommand("copy"); } catch (e2) {}
+    t.remove();
+  }
+  copyBtn.textContent = ok ? "Link copied" : "Copy failed";
+  $("#copyStatus").textContent = ok ? "Link copied to clipboard" : "Could not copy the link";
+  setTimeout(() => (copyBtn.textContent = "Copy link"), 2000);
+});
+
+// Copy link button
+const SITE_URL = "https://subodhpremi.github.io/link-in-bio/";
+$("#copyBtn").addEventListener("click", async () => {
+  let ok = false;
+  try { await navigator.clipboard.writeText(SITE_URL); ok = true; }
+  catch (e) {
+    const t = document.createElement("textarea");   // purane browser ka backup
+    t.value = SITE_URL; t.style.position = "fixed"; t.style.opacity = "0";
+    document.body.appendChild(t); t.select();
+    try { ok = document.execCommand("copy"); } catch (e2) {}
+    t.remove();
+  }
+  $("#copyText").textContent = ok ? "Link copied" : "Copy failed";
+  $("#copyStatus").textContent = ok ? "Link copied" : "Could not copy the link";
+  setTimeout(() => ($("#copyText").textContent = "Copy link"), 2000);
+});
 
 // Mobile menu
 const burger = $("#burger"), menu = $("#menu");
