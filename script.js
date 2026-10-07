@@ -10,15 +10,27 @@ const CONFIG = {
   instagram: "https://www.instagram.com/subodhpremi_sp?stkn=bHdocXh4aHp0dDMw",
   facebook: "https://www.facebook.com/share/1E2V6RShK2/",
   email: "subodhpremicontact@gmail.com",
-  siteUrl: "https://subodhpremi.github.io/link-in-bio/",   // Copy link button yahi link copy karta hai
+  siteUrl: "https://subodhpremi.github.io/link-in-bio-/",   // "Copy link" button yahi link copy karta hai
 
-  project: {
-    title: "Team Showcase Website",
-    text: "A modern website designed to showcase team members and their information in a clean and professional way.",
-    url: "https://subodhpremi.github.io/team-sp/",
-    github: "",        // Repo link mile to yahan daalo, button apne aap dikhega. Khaali = hidden.
-    tech: []           // Jab sure ho, aise likho: ["HTML", "CSS", "JavaScript"]
-  },
+  // Projects: naya project add karna ho to ek { ... } block copy karke neeche jodo
+  projects: [
+    {
+      title: "Team Showcase Website",
+      text: "A modern website designed to showcase team members and their information in a clean and professional way.",
+      url: "https://subodhpremi.github.io/team-sp/",
+      image: "team-showcase.png",
+      github: "",      // Repo link mile to yahan daalo. Khaali = button hidden.
+      tech: []         // Jab sure ho: ["HTML", "CSS", "JavaScript"]
+    },
+    {
+      title: "Link in Bio",
+      text: "A personal digital hub that brings my social links, projects and contact details together in one clean, mobile-friendly page.",
+      url: "https://subodhpremi.github.io/link-in-bio-/",
+      image: "link-in-bio.png",
+      github: "",
+      tech: []
+    }
+  ],
 
   // Cards. url khaali ("") = "Coming Soon" (click nahi hoga)
   cards: [
@@ -46,8 +58,7 @@ const resolve = (u) => ({ instagram: CONFIG.instagram, facebook: CONFIG.facebook
 const external = (u) => u.startsWith("http");
 
 // Text bindings
-const P = CONFIG.project;
-const text = { name: CONFIG.name, tagline: CONFIG.tagline, intro: CONFIG.intro, about: CONFIG.about, projectTitle: P.title, projectText: P.text };
+const text = { name: CONFIG.name, tagline: CONFIG.tagline, intro: CONFIG.intro, about: CONFIG.about };
 document.querySelectorAll("[data-bind]").forEach((el) => (el.textContent = text[el.dataset.bind]));
 
 // Social icon buttons
@@ -72,10 +83,21 @@ $("#linkGrid").innerHTML = CONFIG.cards.map((c) => {
 $("#soonGrid").innerHTML = CONFIG.soon.map((s) =>
   `<div class="s-item glass">${icon(s.icon)}<span>${s.title}</span><small>Coming soon</small></div>`).join("");
 
-// Project
-$("#projLink").href = P.url;
-if (P.github) { $("#projGit").href = P.github; $("#projGit").hidden = false; }
-$("#badges").innerHTML = P.tech.map((t) => `<span>${t}</span>`).join("");
+// Projects
+$("#projectList").innerHTML = CONFIG.projects.map((p) => `
+  <article class="project glass">
+    <div class="p-text">
+      <p class="label">Featured project</p>
+      <h3>${p.title}</h3>
+      <p>${p.text}</p>
+      <div class="badges">${p.tech.map((t) => `<span>${t}</span>`).join("")}</div>
+      <div class="btns">
+        <a class="btn" href="${p.url}" target="_blank" rel="noopener">View Project ${icon("arrow")}</a>
+        ${p.github ? `<a class="btn ghost" href="${p.github}" target="_blank" rel="noopener">GitHub</a>` : ""}
+      </div>
+    </div>
+    <div class="p-img"><img src="${p.image}" alt="Preview of ${p.title}" loading="lazy" onerror="this.parentNode.classList.add('empty')"><span class="ph">Preview coming soon</span></div>
+  </article>`).join("");
 
 // Contact + footer
 $("#emailBtn").href = mailto;
@@ -84,30 +106,12 @@ $("#emailText").textContent = CONFIG.email;
 $("#year").textContent = new Date().getFullYear();
 
 // Copy link button
-const copyBtn = $("#copyBtn");
-copyBtn.addEventListener("click", async () => {
-  let ok = false;
-  try { await navigator.clipboard.writeText(CONFIG.siteUrl); ok = true; }
-  catch (e) { // purane browser ke liye backup
-    const t = document.createElement("textarea");
-    t.value = CONFIG.siteUrl; t.style.position = "fixed"; t.style.opacity = "0";
-    document.body.appendChild(t); t.select();
-    try { ok = document.execCommand("copy"); } catch (e2) {}
-    t.remove();
-  }
-  copyBtn.textContent = ok ? "Link copied" : "Copy failed";
-  $("#copyStatus").textContent = ok ? "Link copied to clipboard" : "Could not copy the link";
-  setTimeout(() => (copyBtn.textContent = "Copy link"), 2000);
-});
-
-// Copy link button
-const SITE_URL = "https://subodhpremi.github.io/link-in-bio/";
 $("#copyBtn").addEventListener("click", async () => {
   let ok = false;
-  try { await navigator.clipboard.writeText(SITE_URL); ok = true; }
-  catch (e) {
-    const t = document.createElement("textarea");   // purane browser ka backup
-    t.value = SITE_URL; t.style.position = "fixed"; t.style.opacity = "0";
+  try { await navigator.clipboard.writeText(CONFIG.siteUrl); ok = true; }
+  catch (e) {   // purane browser ka backup
+    const t = document.createElement("textarea");
+    t.value = CONFIG.siteUrl; t.style.position = "fixed"; t.style.opacity = "0";
     document.body.appendChild(t); t.select();
     try { ok = document.execCommand("copy"); } catch (e2) {}
     t.remove();
