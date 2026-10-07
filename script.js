@@ -18,15 +18,20 @@ const CONFIG = {
       title: "Team Showcase Website",
       text: "A modern website designed to showcase team members and their information in a clean and professional way.",
       url: "https://subodhpremi.github.io/team-sp/",
-      image: "team-showcase.png",
       github: "",      // Repo link mile to yahan daalo. Khaali = button hidden.
       tech: []         // Jab sure ho: ["HTML", "CSS", "JavaScript"]
     },
     {
       title: "Link in Bio",
-      text: "A personal digital hub that brings my social links, projects and contact details together in one clean, mobile-friendly page.",
+      text: "A personal digital hub that brings my social links, projects and contact details together in one clean page.",
       url: "https://subodhpremi.github.io/link-in-bio-/",
-      image: "link-in-bio.png",
+      github: "",
+      tech: []
+    },
+    {
+      title: "Dayora",
+      text: "Dayora is a personal daily organizer that combines tasks, reminders, notes, journaling and progress tracking in one place.",
+      url: "https://dayora-sp.lovable.app",
       github: "",
       tech: []
     }
@@ -86,16 +91,13 @@ $("#soonGrid").innerHTML = CONFIG.soon.map((s) =>
 // Projects
 $("#projectList").innerHTML = CONFIG.projects.map((p) => `
   <article class="project glass">
-    <div class="p-text">
-      <h3>${p.title}</h3>
-      <p>${p.text}</p>
-      <div class="badges">${p.tech.map((t) => `<span>${t}</span>`).join("")}</div>
-      <div class="btns">
-        <a class="btn" href="${p.url}" target="_blank" rel="noopener">View Project ${icon("arrow")}</a>
-        ${p.github ? `<a class="btn ghost" href="${p.github}" target="_blank" rel="noopener">GitHub</a>` : ""}
-      </div>
+    <h3>${p.title}</h3>
+    <p>${p.text}</p>
+    <div class="badges">${p.tech.map((t) => `<span>${t}</span>`).join("")}</div>
+    <div class="btns">
+      <a class="btn" href="${p.url}" target="_blank" rel="noopener">View Project ${icon("arrow")}</a>
+      ${p.github ? `<a class="btn ghost" href="${p.github}" target="_blank" rel="noopener">GitHub</a>` : ""}
     </div>
-    <div class="p-img"><img src="${p.image}" alt="Preview of ${p.title}" loading="lazy" onerror="this.parentNode.classList.add('empty')"><span class="ph">Preview coming soon</span></div>
   </article>`).join("");
 
 // Contact + footer
