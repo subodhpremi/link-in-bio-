@@ -87,7 +87,6 @@ $("#soonGrid").innerHTML = CONFIG.soon.map((s) =>
 $("#projectList").innerHTML = CONFIG.projects.map((p) => `
   <article class="project glass">
     <div class="p-text">
-      <p class="label">Featured project</p>
       <h3>${p.title}</h3>
       <p>${p.text}</p>
       <div class="badges">${p.tech.map((t) => `<span>${t}</span>`).join("")}</div>
