@@ -54,7 +54,7 @@ h2{font-size:clamp(1.5rem,5vw,2.1rem)}
 .social:hover{transform:translateY(-3px) scale(1.06);box-shadow:0 0 0 4px rgba(72,202,228,.3)}
 
 /* Hero */
-.hero{position:relative;width:min(1120px,calc(100% - 32px));margin:0 auto;padding:48px 0 70px;display:grid;gap:36px;align-items:center}
+.hero{position:relative;width:min(1120px,calc(100% - 32px));margin:0 auto;padding:16px 0 50px;display:grid;gap:28px;align-items:center}
 .pill{display:inline-block;padding:4px 14px;border-radius:999px;background:rgba(0,180,216,.18);color:var(--blue-d);font-size:.85rem;font-weight:500;margin-bottom:14px}
 .tagline{font-size:clamp(1.15rem,4vw,1.5rem);color:var(--blue);font-weight:500;margin:8px 0 14px}
 .lead{max-width:440px;color:var(--muted)}
@@ -137,7 +137,7 @@ button.btn{font:inherit;font-weight:600}
   .nav{flex-wrap:nowrap}
   .burger{display:none}
   .menu{display:flex;flex-direction:row;width:auto;padding:0;gap:4px}
-  .hero{grid-template-columns:1.1fr 1fr;padding:70px 0 0;align-items:end}
+  .hero{grid-template-columns:1.1fr 1fr;padding:8px 0 0;align-items:end}
   .hero-text{padding-bottom:80px}
   .hero-photo{order:0;width:min(100%,520px)}
   .grid{grid-template-columns:repeat(3,1fr)}
