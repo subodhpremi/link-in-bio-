@@ -121,7 +121,7 @@ a.card:hover{transform:translateY(-4px);box-shadow:0 14px 34px rgba(0,150,199,.2
 .contact .btns{flex-direction:column;align-items:flex-start}
 .mailbox{background:rgba(255,255,255,.7);border:1px solid var(--line);border-radius:18px;padding:16px 18px;overflow-wrap:anywhere}
 .mailbox small{display:block;color:var(--muted)}
-.mailbox a{font-weight:600;color:var(--blue-d)}
+.mailbox a{font-weight:600;color:var(--blue-d);font-size:clamp(.85rem,3.8vw,1.05rem)}
 
 button.btn{font:inherit;font-weight:600}
 
@@ -173,3 +173,8 @@ button.btn{font:inherit;font-weight:600}
 .hero-photo.fallback img{width:72%;align-self:center;-webkit-mask-image:none;mask-image:none}
 .sig{width:min(220px,62%);height:auto;margin:4px 0 2px}
 .a-tag{color:var(--blue)!important;font-weight:600;margin:0!important}
+
+/* Desktop: photo right side mein (ye block sabse neeche rehna chahiye) */
+@media(min-width:900px){
+  .hero-photo{order:0;width:min(100%,520px)}
+}
