@@ -3,9 +3,9 @@
    ===================================================== */
 const CONFIG = {
   name: "Subodh Premi",
-  tagline: "Learning. Building. Growing.",
-  intro: "Digital creator, learner and builder exploring technology, creative ideas and useful digital projects.",
-  about: "I'm a digital creator and lifelong learner, passionate about building useful projects, exploring new technologies, and growing with every step.",
+  tagline: "Learning, Creating, Growing",
+  intro: "Exploring AI, creating graphic designs, and building websites and apps through vibe coding.",
+  about: "I'm a learner and digital creator exploring AI, graphic design, and vibe coding. I enjoy experimenting with ideas, creating digital projects, and sharing my journey as I learn and grow.",
 
   instagram: "https://www.instagram.com/subodhpremi_sp?stkn=bHdocXh4aHp0dDMw",
   facebook: "https://www.facebook.com/share/1E2V6RShK2/",
@@ -45,13 +45,6 @@ const CONFIG = {
     { icon: "code",      title: "Projects",  text: "Explore what I've built",      url: "#projects" },
     { icon: "briefcase", title: "Portfolio",    text: "My work & achievements", url: "" },
     { icon: "file",      title: "Resume",       text: "View my resume",         url: "" },
-    { icon: "pen",       title: "Blog",         text: "Read my thoughts",       url: "" },
-    { icon: "award",     title: "Certificates", text: "My certifications",      url: "" }
-  ],
-  soon: [
-    { icon: "briefcase", title: "Portfolio" }, { icon: "file", title: "Resume" },
-    { icon: "pen", title: "Blog" }, { icon: "award", title: "Certificates" },
-    { icon: "plus", title: "More Projects" }
   ]
 };
 /* =================== EDIT HERE khatam =================== */
@@ -84,9 +77,6 @@ $("#linkGrid").innerHTML = CONFIG.cards.map((c) => {
     : `<div class="card glass off" aria-disabled="true">${inner}</div>`;
 }).join("");
 
-// Coming soon strip
-$("#soonGrid").innerHTML = CONFIG.soon.map((s) =>
-  `<div class="s-item glass">${icon(s.icon)}<span>${s.title}</span><small>Coming soon</small></div>`).join("");
 
 // Projects
 $("#projectList").innerHTML = CONFIG.projects.map((p) => `

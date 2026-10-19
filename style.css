@@ -112,11 +112,6 @@ a.card:hover{transform:translateY(-4px);box-shadow:0 14px 34px rgba(0,150,199,.2
 .tags span{padding:4px 16px;border-radius:999px;border:1px solid var(--line);color:var(--blue-d);font-weight:500;background:rgba(255,255,255,.6)}
 
 /* Coming soon */
-.soon{display:grid;gap:12px;grid-template-columns:repeat(2,1fr)}
-.s-item{display:flex;flex-direction:column;align-items:center;gap:4px;padding:18px 10px;text-align:center;font-weight:500;color:var(--blue-d);border-radius:20px}
-.s-item .ico{font-size:1.5rem;color:var(--blue)}
-.s-item small{font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
-.s-item:last-child:nth-child(odd){grid-column:1/-1}
 
 /* Contact */
 .contact{display:grid;gap:22px;padding:28px;align-items:center}
@@ -138,6 +133,9 @@ button.btn{font:inherit;font-weight:600}
 .f-role{font-weight:500;color:var(--cyan-l)}
 .f-brand p{opacity:.85;font-size:.9rem}
 .foot .socials{margin:10px 0}
+.f-top{display:flex;align-items:center;gap:10px}
+.f-top img{width:44px;height:auto}
+.f-sig{width:min(180px,60%);height:auto}
 .foot .social{background:rgba(255,255,255,.12);color:#fff;border-color:rgba(255,255,255,.3)}
 .copy{font-size:.8rem;opacity:.8}
 
@@ -145,18 +143,16 @@ button.btn{font:inherit;font-weight:600}
 @media(min-width:640px){
   .plist{grid-template-columns:repeat(2,1fr)}
   .grid{grid-template-columns:repeat(2,1fr)}
-  .soon{grid-template-columns:repeat(3,1fr)}
-  .s-item:last-child:nth-child(odd){grid-column:auto}
 }
 /* Laptop / Desktop */
 @media(min-width:900px){
   .nav{flex-wrap:nowrap}
   .burger{display:none}
   .menu{display:flex;flex-direction:row;width:auto;padding:0;gap:4px}
-  .hero{grid-template-columns:1.1fr 1fr;padding:70px 0 90px}
-  .hero-logo{order:0}
-  .grid{grid-template-columns:repeat(4,1fr)}
-  .soon{grid-template-columns:repeat(5,1fr)}
+  .hero{grid-template-columns:1.1fr 1fr;padding:70px 0 0;align-items:end}
+  .hero-text{padding-bottom:80px}
+  .hero-photo{order:0;width:min(100%,430px)}
+  .grid{grid-template-columns:repeat(3,1fr)}
   .plist{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
   .project{padding:34px}
   .about{grid-template-columns:1fr 1.2fr;padding:34px}
@@ -172,3 +168,12 @@ button.btn{font:inherit;font-weight:600}
 
 /* Contact: buttons ek ke niche ek */
 .stack{display:flex;flex-direction:column;align-items:flex-start;gap:12px}
+
+/* Hero photo */
+.hero-photo{position:relative;order:-1;width:min(60vw,250px);justify-self:center;display:grid;place-items:end center}
+.hero-photo .glow{position:absolute;inset:4% -10% 0;background:radial-gradient(circle at 50% 55%,rgba(72,202,228,.6),rgba(72,202,228,0) 68%)}
+.hero-photo .ring{position:absolute;left:-14%;top:34%;width:128%;aspect-ratio:1.9;rotate:-20deg}
+.hero-photo img{position:relative;width:100%;height:auto;-webkit-mask-image:linear-gradient(#000 80%,transparent);mask-image:linear-gradient(#000 80%,transparent);animation:float 8s ease-in-out infinite}
+.hero-photo.fallback img{width:72%;align-self:center;-webkit-mask-image:none;mask-image:none}
+.sig{width:min(220px,62%);height:auto;margin:4px 0 2px}
+.a-tag{color:var(--blue)!important;font-weight:600;margin:0!important}

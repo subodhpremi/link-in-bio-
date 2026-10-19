@@ -38,16 +38,16 @@
 <section id="home" class="hero">
   <div class="orb o1" data-depth="18"></div><div class="orb o2" data-depth="30"></div><div class="gem g1" data-depth="24"></div>
   <div class="hero-text">
-    <p class="pill">Welcome to my digital hub</p>
+    <p class="pill">Welcome to my creative world</p>
     <h1 data-bind="name">Subodh Premi</h1>
-    <p class="tagline" data-bind="tagline">Learning. Building. Growing.</p>
+    <p class="tagline" data-bind="tagline">Learning, Creating, Growing</p>
     <p class="lead" data-bind="intro"></p>
     <div class="socials" id="heroSocials"></div>
     <a class="btn" href="#links">Explore My World <svg class="ico" viewBox="0 0 24 24"><use href="#i-arrow"/></svg></a>
   </div>
-  <div class="hero-logo" data-depth="10">
-    <div class="ring"></div>
-    <div class="sphere glass"><img src="logo.png" alt="Subodh Premi — Digital Creator logo" width="320" height="200"></div>
+  <div class="hero-photo" data-depth="10">
+    <div class="glow"></div><div class="ring"></div>
+    <img src="hero-photo.png" alt="Portrait of Subodh Premi" width="800" height="1000" fetchpriority="high" onerror="this.onerror=null;this.src='logo.png';this.parentNode.classList.add('fallback')">
   </div>
 </section>
 
@@ -71,18 +71,12 @@
     <div class="a-photo"><img src="profile.png" alt="Portrait of Subodh Premi" width="480" height="480" loading="lazy" onerror="this.onerror=null;this.src='logo.png';this.parentNode.classList.add('fallback')"></div>
     <div>
       <p class="label">About me</p>
-      <h2>Hi, I'm Subodh Premi</h2>
+      <h2>Hi, I'm Subodh Premi.</h2>
       <p data-bind="about"></p>
-      <p class="tags"><span>Learn</span><span>Build</span><span>Grow</span></p>
+      <img class="sig" src="signature.png" alt="Signature of Subodh Premi" width="240" height="160" loading="lazy">
+      <p class="a-tag">Learning, Creating, Growing</p>
     </div>
   </div>
-</section>
-
-<!-- COMING SOON -->
-<section class="sec reveal">
-  <h2>More is coming soon</h2>
-  <p class="sub">I'm working on more projects and content. Stay tuned.</p>
-  <div class="soon" id="soonGrid"></div>
 </section>
 
 <!-- CONTACT -->
@@ -105,8 +99,8 @@
 <!-- FOOTER -->
 <footer class="foot">
   <div class="f-brand">
-    <strong class="f-name" data-bind="name"></strong>
-    <span class="f-role">Digital Creator</span>
+    <div class="f-top"><img src="footer-sp.png" alt="" width="44" height="21" loading="lazy"><strong class="f-name" data-bind="name"></strong></div>
+    <img class="f-sig" src="signature-white.png" alt="Signature of Subodh Premi" width="180" height="120" loading="lazy">
     <p data-bind="tagline"></p>
   </div>
   <div class="socials" id="footSocials"></div>
