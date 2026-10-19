@@ -125,16 +125,7 @@ a.card:hover{transform:translateY(-4px);box-shadow:0 14px 34px rgba(0,150,199,.2
 
 button.btn{font:inherit;font-weight:600}
 
-/* Footer */
-.foot{width:min(880px,calc(100% - 24px));margin:30px auto 16px;padding:22px 24px;border-radius:var(--r);color:var(--navy);
-  background:var(--glass);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--line);box-shadow:var(--shadow);
-  display:grid;gap:14px;justify-items:center;text-align:center}
-.f-left p{color:var(--blue);font-weight:500;font-size:.95rem}
-.f-logo{width:min(150px,50%);height:auto}
-.foot .socials{margin:6px 0 0}
-.f-left,.f-right{display:grid;gap:8px;justify-items:center}
-.f-sig{width:min(170px,60%);height:auto}
-.copy{font-size:.8rem;color:var(--muted)}
+
 
 /* Tablet */
 @media(min-width:640px){
@@ -178,10 +169,6 @@ button.btn{font:inherit;font-weight:600}
 
 /* Footer: logo ek side, signature opposite side */
 @media(min-width:640px){
-  .foot{grid-template-columns:1fr 1fr;align-items:center}
-  .f-left{justify-self:start;justify-items:start;text-align:left}
-  .f-right{justify-self:end;justify-items:end}
-  .copy{grid-column:1/-1;border-top:1px solid var(--line);padding-top:12px;width:100%}
 }
 /* Hero photo ke paas floating icons */
 .chip{position:absolute;z-index:2;width:46px;height:46px;border-radius:50%;display:grid;place-items:center;font-size:1.25rem;color:var(--blue);
@@ -190,3 +177,14 @@ button.btn{font:inherit;font-weight:600}
 .c1{top:12%;left:0}
 .c2{top:34%;right:0;animation-delay:-2s}
 .c3{top:62%;left:2%;animation-delay:-4s}
+
+/* Footer: logo left, signature + tagline + icons right, copyright centre neeche */
+.foot{width:min(1120px,calc(100% - 24px));margin:30px auto 16px;padding:18px 20px 14px;border-radius:var(--r);color:var(--navy);
+  background:var(--glass);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--line);box-shadow:var(--shadow);
+  display:grid;grid-template-columns:auto 1fr;align-items:center;gap:10px 16px}
+.f-logo{width:clamp(100px,30vw,150px);height:auto}
+.f-right{display:grid;justify-items:end;text-align:right;gap:2px}
+.f-sig{width:clamp(110px,34vw,170px);height:auto}
+.f-right p{color:var(--blue);font-weight:500;font-size:.9rem}
+.f-right .socials{margin:6px 0 0;justify-content:flex-end}
+.copy{grid-column:1/-1;text-align:center;font-size:.8rem;color:var(--muted);border-top:1px solid var(--line);padding-top:10px}
